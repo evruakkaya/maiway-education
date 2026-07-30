@@ -5,19 +5,19 @@ import Link from "next/link";
 const programs = [
   {
     title: "Dil Okulları",
-    image: "/images/dil-okullari.png",
+    image: "/images/dil-okullari.jpeg",
     description:
       "Her yaşa, seviyeye ve bütçeye uygun dil okulu alternatifleri. Hem yeni bir ülkeyi keşfedip, hem yeni kültürlerle tanışacağınız hem de dilinizi geliştireceğiniz harika programlar sizi bekliyor.",
   },
   {
     title: "Lisans",
-    image: "/images/lisans.png",
+    image: "/images/lisans.jpeg",
     description:
       "Hayalindeki lisans eğitimini erteleme! Size en uygun programı yurt dışı burs seçenekleriyle birlikte keşfedelim.",
   },
   {
     title: "Yüksek Lisans",
-    image: "/images/yuksek-lisans.png",
+    image: "/images/yuksek-lisans.jpeg",
     description:
       "Alanınızda küresel vizyonunuzu güçlendirecek Master programlarını yurt dışı danışmanlığımız sayesinde keşfedin.",
   },
