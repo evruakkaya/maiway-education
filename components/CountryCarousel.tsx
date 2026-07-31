@@ -1,6 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import {
+  type CSSProperties,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import CountryCard from "./CountryCard";
 
@@ -53,7 +58,19 @@ const countries = [
 ];
 
 const loopCountries = [...countries, ...countries, ...countries];
+
 const initialIndex = countries.length + 2;
+
+/*
+  Aktif kart 640px, pasif kart 400px.
+
+  Aradaki fark:
+  640 - 400 = 240px
+
+  Aktif kart iki yöne eşit büyüdüğü için komşuları
+  240 / 2 = 120px dışarı taşıyoruz.
+*/
+const desktopSlideShift = 120;
 
 export default function CountryCarousel() {
   const [activeIndex, setActiveIndex] = useState(initialIndex);
@@ -88,20 +105,12 @@ export default function CountryCarousel() {
 
   const handleCountryClick = useCallback(
     (index: number) => {
-      if (!emblaApi || index === activeIndex) return;
+      if (!emblaApi) return;
 
-      const handleCountryClick = useCallback(
-        (index: number) => {
-          if (!emblaApi) return;
-      
-          setActiveIndex(index)
-          emblaApi.scrollTo(index);
-        },
-        [emblaApi]
-      );
+      setActiveIndex(index);
       emblaApi.scrollTo(index);
     },
-    [emblaApi, activeIndex]
+    [emblaApi]
   );
 
   const scrollPrevious = useCallback(() => {
@@ -177,17 +186,36 @@ export default function CountryCarousel() {
           {loopCountries.map((country, index) => {
             const isActive = activeIndex === index;
 
+            let shift = 0;
+
+            if (index < activeIndex) {
+              shift = -desktopSlideShift;
+            }
+
+            if (index > activeIndex) {
+              shift = desktopSlideShift;
+            }
+
+            const slideStyle = {
+              "--slide-shift": `${shift}px`,
+            } as CSSProperties;
+
             return (
               <div
                 key={`${country.id}-${index}`}
+                style={slideStyle}
                 className="
                   w-[88vw]
                   min-w-0
                   shrink-0
                   px-2
+                  transition-transform
+                  duration-700
+                  ease-[cubic-bezier(0.22,1,0.36,1)]
                   sm:w-[520px]
-                  lg:w-[560px]
-                  lg:px-3
+                  lg:w-[416px]
+                  lg:translate-x-[var(--slide-shift)]
+                  lg:px-2
                 "
               >
                 <CountryCard
