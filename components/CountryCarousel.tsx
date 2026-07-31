@@ -94,6 +94,7 @@ export default function CountryCarousel() {
         (index: number) => {
           if (!emblaApi) return;
       
+          setActiveIndex(index)
           emblaApi.scrollTo(index);
         },
         [emblaApi]
@@ -185,7 +186,7 @@ export default function CountryCarousel() {
                   shrink-0
                   px-2
                   sm:w-[520px]
-                  lg:w-[688px]
+                  lg:w-[560px]
                   lg:px-3
                 "
               >

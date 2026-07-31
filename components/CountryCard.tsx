@@ -24,11 +24,11 @@ export default function CountryCard({
     <article
       onClick={onClick}
       className="
-        mx-auto
-        w-full
-        min-w-0
-        cursor-pointer
-        lg:max-w-[664px]
+          mx-auto
+          w-full
+          min-w-0
+          cursor-pointer
+          lg:max-w-[560px]
       "
     >
       {/* Görsel için boyutu değişmeyen sabit alan */}
@@ -57,10 +57,10 @@ export default function CountryCard({
             ease-[cubic-bezier(0.22,1,0.36,1)]
             will-change-transform
             lg:h-[400px]
-            lg:w-[531px]
+            lg:w-[424px]
             ${
               active
-                ? "lg:scale-125"
+                ? "lg:scale-[1.38]"
                 : "lg:scale-100"
             }
           `}
@@ -101,10 +101,11 @@ export default function CountryCard({
       <div
         className={`
           mx-auto
+          mt-5
+          w-full
           px-1
-          transition-[max-width]
-          duration-700
-          ease-[cubic-bezier(0.22,1,0.36,1)]
+          sm:mt-6
+          lg:max-w-[500px]
           ${
             active
               ? "lg:max-w-[664px]"
