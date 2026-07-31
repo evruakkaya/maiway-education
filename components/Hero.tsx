@@ -48,7 +48,9 @@ export default function Hero() {
           </p>
         </div>
 
-        <Button onClick={scrollToPrograms}>
+        <Button 
+          variant="secondary"
+          onClick={scrollToPrograms}>
           Keşfetmeye Başla →
         </Button>
       </div>
