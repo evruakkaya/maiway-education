@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import CountryCard from "./CountryCard";
 
@@ -63,50 +63,140 @@ export default function CountryCarousel() {
     align: "center",
     dragFree: false,
     startIndex: initialIndex,
+    duration: 30,
   });
 
-  function handleCountryClick(index: number) {
-    setActiveIndex(index);
-    emblaApi?.scrollTo(index);
-  }
+  const updateActiveIndex = useCallback(() => {
+    if (!emblaApi) return;
+
+    setActiveIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    updateActiveIndex();
+
+    emblaApi.on("select", updateActiveIndex);
+    emblaApi.on("reInit", updateActiveIndex);
+
+    return () => {
+      emblaApi.off("select", updateActiveIndex);
+      emblaApi.off("reInit", updateActiveIndex);
+    };
+  }, [emblaApi, updateActiveIndex]);
+
+  const handleCountryClick = useCallback(
+    (index: number) => {
+      if (!emblaApi) return;
+
+      emblaApi.scrollTo(index);
+    },
+    [emblaApi]
+  );
+
+  const scrollPrevious = useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
 
   return (
-    <div
-      ref={emblaRef}
-      className="mt-12 overflow-hidden md:mt-16 xl:mt-20"
-    >
-      <div className="flex items-start">
-        {loopCountries.map((country, index) => {
-          const isActive = activeIndex === index;
+    <div className="relative mt-12 md:mt-16 xl:mt-20">
+      {/* Oklar */}
+      <div className="mb-6 flex items-center justify-end gap-3 px-4 md:px-0">
+        <button
+          type="button"
+          onClick={scrollPrevious}
+          aria-label="Önceki ülke"
+          className="
+            flex
+            h-12
+            w-12
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-[#E7E7E7]
+            bg-white
+            text-[22px]
+            text-black
+            transition-all
+            duration-200
+            hover:border-black
+            hover:bg-black
+            hover:text-white
+            active:scale-95
+          "
+        >
+          ←
+        </button>
 
-          return (
-            <div
-              key={`${country.id}-${index}`}
-              className={`
-                min-w-0
-                shrink-0
-                px-2
-                transition-[width]
-                duration-500
-                ease-in-out
-                w-[88vw]
-                sm:w-[520px]
-                lg:px-3
-                ${
-                  isActive
-                    ? "lg:w-[664px]"
-                    : "lg:w-[424px]"
-                }
-              `}
-            >
-              <CountryCard
-                country={country}
-                active={isActive}
-                onClick={() => handleCountryClick(index)}
-              />
-            </div>
-          );
-        })}
+        <button
+          type="button"
+          onClick={scrollNext}
+          aria-label="Sonraki ülke"
+          className="
+            flex
+            h-12
+            w-12
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-[#E7E7E7]
+            bg-white
+            text-[22px]
+            text-black
+            transition-all
+            duration-200
+            hover:border-black
+            hover:bg-black
+            hover:text-white
+            active:scale-95
+          "
+        >
+          →
+        </button>
+      </div>
+
+      {/* Carousel */}
+      <div ref={emblaRef} className="overflow-hidden">
+        <div className="flex items-start">
+          {loopCountries.map((country, index) => {
+            const isActive = activeIndex === index;
+
+            return (
+              <div
+                key={`${country.id}-${index}`}
+                className={`
+                  min-w-0
+                  shrink-0
+                  px-2
+                  transition-[width]
+                  duration-500
+                  ease-in-out
+                  w-[88vw]
+                  sm:w-[520px]
+                  lg:px-3
+                  ${
+                    isActive
+                      ? "lg:w-[664px]"
+                      : "lg:w-[424px]"
+                  }
+                `}
+              >
+                <CountryCard
+                  country={country}
+                  active={isActive}
+                  onClick={() => handleCountryClick(index)}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

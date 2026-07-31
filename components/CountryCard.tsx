@@ -23,14 +23,11 @@ export default function CountryCard({
   return (
     <article
       onClick={onClick}
-      className={`
+      className="
         w-full
         min-w-0
         cursor-pointer
-        transition-all
-        duration-500
-        ease-in-out
-      `}
+      "
     >
       <div
         className={`
@@ -39,14 +36,14 @@ export default function CountryCard({
           w-full
           overflow-hidden
           rounded-[12px]
-          transition-all
+          transition-[height,transform]
           duration-500
           ease-in-out
           sm:h-[480px]
           ${
             active
-              ? "lg:h-[500px]"
-              : "lg:h-[400px]"
+              ? "lg:h-[500px] lg:translate-y-0"
+              : "lg:h-[400px] lg:translate-y-[50px]"
           }
         `}
       >
@@ -54,8 +51,13 @@ export default function CountryCard({
           src={country.image}
           alt={country.name}
           fill
-          sizes="(max-width: 639px) 88vw, (max-width: 1023px) 520px, 640px"
-          className="object-cover"
+          sizes="(max-width: 639px) 88vw, (max-width: 1023px) 520px, 664px"
+          className="
+            object-cover
+            transition-transform
+            duration-700
+            ease-out
+          "
         />
 
         <div className="absolute left-3 top-3 z-10 flex max-w-[calc(100%-24px)] flex-wrap items-center gap-2 sm:left-4 sm:top-4">
@@ -75,11 +77,25 @@ export default function CountryCard({
           {country.name}
         </h3>
 
-        {active && (
-          <p className="mt-4 text-[16px] font-normal leading-[25px] tracking-[-0.6px] text-[#5A5A5A] sm:mt-6 sm:text-[18px] sm:leading-[27px]">
-            {country.description}
-          </p>
-        )}
+        <div
+          className={`
+            grid
+            transition-[grid-template-rows,opacity,margin]
+            duration-500
+            ease-in-out
+            ${
+              active
+                ? "mt-4 grid-rows-[1fr] opacity-100 sm:mt-6"
+                : "mt-0 grid-rows-[0fr] opacity-0"
+            }
+          `}
+        >
+          <div className="overflow-hidden">
+            <p className="text-[16px] font-normal leading-[25px] tracking-[-0.6px] text-[#5A5A5A] sm:text-[18px] sm:leading-[27px]">
+              {country.description}
+            </p>
+          </div>
+        </div>
       </div>
     </article>
   );
