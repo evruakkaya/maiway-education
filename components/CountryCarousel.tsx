@@ -88,12 +88,12 @@ export default function CountryCarousel() {
 
   const handleCountryClick = useCallback(
     (index: number) => {
-      if (!emblaApi) return;
+      if (!emblaApi || index === activeIndex) return;
 
       setActiveIndex(index);
       emblaApi.scrollTo(index);
     },
-    [emblaApi]
+    [emblaApi, activeIndex]
   );
 
   const scrollPrevious = useCallback(() => {
@@ -106,8 +106,8 @@ export default function CountryCarousel() {
 
   return (
     <div className="relative mt-12 md:mt-16 xl:mt-20">
-      {/* Oklar */}
-      <div className="mb-6 flex items-center justify-end gap-3 px-4 md:px-0">
+      {/* Desktop okları */}
+      <div className="mb-6 hidden items-center justify-end gap-3 px-4 lg:flex lg:px-0">
         <button
           type="button"
           onClick={scrollPrevious}
@@ -172,22 +172,15 @@ export default function CountryCarousel() {
             return (
               <div
                 key={`${country.id}-${index}`}
-                className={`
+                className="
+                  w-[88vw]
                   min-w-0
                   shrink-0
                   px-2
-                  transition-[width]
-                  duration-700
-                  ease-[cubic-bezier(0.22,1,0.36,1)]
-                  will-change-[width]
                   sm:w-[520px]
+                  lg:w-[688px]
                   lg:px-3
-                  ${
-                    isActive
-                      ? "lg:w-[664px]"
-                      : "lg:w-[424px]"
-                  }
-                `}
+                "
               >
                 <CountryCard
                   country={country}

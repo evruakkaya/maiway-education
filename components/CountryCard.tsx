@@ -24,9 +24,18 @@ export default function CountryCard({
     <article
       onClick={onClick}
       className="
-        w-full
+        mx-auto
         min-w-0
         cursor-pointer
+        transition-[width]
+        duration-700
+        ease-[cubic-bezier(0.22,1,0.36,1)]
+        will-change-[width]
+        w-full
+        ${
+          active
+          ? "lg:w-[664px]"
+          : "lg:w-[424px]"
       "
     >
       <div
@@ -36,14 +45,14 @@ export default function CountryCard({
           w-full
           overflow-hidden
           rounded-[12px]
-          transition-[height,transform]
+          transition-[height]
           duration-700
           ease-[cubic-bezier(0.22,1,0.36,1)]
-          sm:h-[480px]
+          will-change-[height]
           ${
             active
-              ? "lg:h-[500px] lg:translate-y-0"
-              : "lg:h-[400px] lg:translate-y-[50px]"
+              ? "lg:h-[500px]"
+              : "lg:h-[400px]"
           }
         `}
       >
