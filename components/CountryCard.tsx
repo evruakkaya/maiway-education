@@ -25,12 +25,12 @@ export default function CountryCard({
       onClick={onClick}
       className={`
         mx-auto
-        min-w-0
+        w-full
+        shrink-0
         cursor-pointer
         transition-[width]
         duration-700
         ease-[cubic-bezier(0.22,1,0.36,1)]
-        w-full
         ${
           active
             ? "lg:w-[640px]"
