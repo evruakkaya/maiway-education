@@ -61,15 +61,6 @@ const loopCountries = [...countries, ...countries, ...countries];
 
 const initialIndex = countries.length + 2;
 
-/*
-  Aktif kart 640px, pasif kart 400px.
-
-  Aradaki fark:
-  640 - 400 = 240px
-
-  Aktif kart iki yöne eşit büyüdüğü için komşuları
-  240 / 2 = 120px dışarı taşıyoruz.
-*/
 const desktopSlideShift = 120;
 
 export default function CountryCarousel() {
@@ -205,9 +196,11 @@ export default function CountryCarousel() {
                 key={`${country.id}-${index}`}
                 style={slideStyle}
                 className="
+                  flex
                   w-[88vw]
                   min-w-0
                   shrink-0
+                  justify-center
                   px-2
                   transition-transform
                   duration-700
