@@ -1,3 +1,14 @@
+const scrollToPrograms = () => {
+  const section = document.getElementById("programs");
+
+  if (section) {
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};
+
 import Image from "next/image";
 import Badge from "./ui/Badge";
 import Button from "./ui/Button";
@@ -35,7 +46,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <Button variant="secondary">
+        <Button onClick={scrollToPrograms}>
           Keşfetmeye Başla →
         </Button>
       </div>
