@@ -49,7 +49,7 @@ export default function Footer() {
               className="w-fit shrink-0"
               onClick={() => setIsContactOpen(true)}
             >
-              Ücretsiz Ön Görüşme
+              Bize Ulaş
             </Button>
           </div>
 

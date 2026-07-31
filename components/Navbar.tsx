@@ -81,7 +81,7 @@ export default function Navbar() {
           {/* Bize Ulaş */}
           <div className="ml-auto">
             <Button onClick={() => setIsContactOpen(true)}>
-              Bize Ulaş
+              Ücretsiz Ön Görüşme
             </Button>
           </div>
         </nav>
