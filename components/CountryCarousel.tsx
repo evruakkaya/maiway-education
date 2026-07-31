@@ -63,7 +63,7 @@ export default function CountryCarousel() {
     align: "center",
     dragFree: false,
     startIndex: initialIndex,
-    duration: 30,
+    duration: 45,
   });
 
   const updateActiveIndex = useCallback(() => {
@@ -90,7 +90,14 @@ export default function CountryCarousel() {
     (index: number) => {
       if (!emblaApi || index === activeIndex) return;
 
-      setActiveIndex(index);
+      const handleCountryClick = useCallback(
+        (index: number) => {
+          if (!emblaApi) return;
+      
+          emblaApi.scrollTo(index);
+        },
+        [emblaApi]
+      );
       emblaApi.scrollTo(index);
     },
     [emblaApi, activeIndex]
