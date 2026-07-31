@@ -1,19 +1,21 @@
-const scrollToPrograms = () => {
-  const section = document.getElementById("programs");
-
-  if (section) {
-    section.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-};
+"use client";
 
 import Image from "next/image";
 import Badge from "./ui/Badge";
 import Button from "./ui/Button";
 
 export default function Hero() {
+  const scrollToPrograms = () => {
+    const section = document.getElementById("programs");
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <section
       id="hero"
