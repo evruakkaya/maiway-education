@@ -37,8 +37,8 @@ export default function CountryCard({
           overflow-hidden
           rounded-[12px]
           transition-[height,transform]
-          duration-500
-          ease-in-out
+          duration-700
+          ease-[cubic-bezier(0.22,1,0.36,1)]
           sm:h-[480px]
           ${
             active
@@ -81,8 +81,8 @@ export default function CountryCard({
           className={`
             grid
             transition-[grid-template-rows,opacity,margin]
-            duration-500
-            ease-in-out
+            duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
             ${
               active
                 ? "mt-4 grid-rows-[1fr] opacity-100 sm:mt-6"
