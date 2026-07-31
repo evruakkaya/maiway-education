@@ -6,9 +6,9 @@ import Button from "./ui/Button";
 import ContactModal from "./ContactModal";
 
 const socialLinks = [
-  { label: "Instagram", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/maiwayeducation/" },
   { label: "Whatsapp", href: "#" },
-  { label: "Facebook", href: "#" },
+  { label: "Facebook", href: "https://www.facebook.com/share/19FNiQiHL7/?mibextid=wwXIfr" },
 ];
 
 export default function Footer() {
@@ -35,6 +35,8 @@ export default function Footer() {
                     key={social.label}
                     href={social.href}
                     className="inline-flex items-center justify-center rounded-[24px] border border-[#797979] bg-[#1A1A1A] px-5 py-3 text-[14px] font-normal leading-[20px] tracking-[-0.7px] text-white transition-colors hover:bg-white hover:text-black sm:px-6 sm:text-[16px] sm:leading-[24px] sm:tracking-[-1.28px]"
+                    target="_blank"
+                    rel="nooper noreferrer"
                   >
                     {social.label}
                   </a>
