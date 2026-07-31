@@ -8,7 +8,7 @@ const countries = [
   {
     id: "germany",
     name: "Almanya",
-    image: "/images/almanya.png",
+    image: "/images/almanya.jpeg",
     description:
       "Öğrenciler, yetişkinler ve profesyoneller için Almanya genelindeki eğitim seçeneklerini keşfediyoruz.",
     color: "bg-[#E7E7E7]",
@@ -26,7 +26,7 @@ const countries = [
   {
     id: "england",
     name: "İngiltere",
-    image: "/images/ingiltere.png",
+    image: "/images/ingiltere.jpeg",
     description:
       "Öğrenciler, yetişkinler ve profesyoneller için Birleşik Krallık genelindeki kampüslerde İngilizce dil kursu seçenekleri sunuyoruz.",
     color: "bg-[#E7E7E7]",
@@ -35,7 +35,7 @@ const countries = [
   {
     id: "italy",
     name: "İtalya",
-    image: "/images/italya.png",
+    image: "/images/italya.jpeg",
     description:
       "İtalya’daki eğitim programlarını, dil okullarını ve akademik fırsatları birlikte keşfediyoruz.",
     color: "bg-[#E7E7E7]",
@@ -44,7 +44,7 @@ const countries = [
   {
     id: "spain",
     name: "İspanya",
-    image: "/images/ispanya.png",
+    image: "/images/ispanya.jpeg",
     description:
       "İspanya’daki dil okulları ve üniversite programları için sana özel seçenekler sunuyoruz.",
     color: "bg-[#E7E7E7]",
